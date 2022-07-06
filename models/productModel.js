@@ -19,15 +19,13 @@ const getById = async (id) => {
 };
 
 const enrolProduct = async (name) => {
-  try {
-    await connection.execute(
+    const [{ insertId }] = await connection.execute(
       `
     INSERT INTO StoreManager.products (name)
     VALUE (?)`,
       [name],
     );
-  } catch (error) {
-    throw Error(error.message);
-  }
+  return insertId;
 };
+
 module.exports = { getProduct, getById, enrolProduct };

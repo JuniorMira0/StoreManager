@@ -14,11 +14,7 @@ const getById = async (id) => {
 
 const enrolProduct = async (name) => {
   const addProduct = await ProductModel.enrolProduct(name);
-
-  return {
-    id: addProduct.insertId,
-    name,
-  };
+  return addProduct;
 };
 
 module.exports = {

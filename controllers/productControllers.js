@@ -1,6 +1,7 @@
 const productService = require('../services/productServices');
 
 const ok = 200;
+const created = 201;
 
 const getProduct = async (_req, res) => {
     const products = await productService.getProduct();
@@ -15,7 +16,16 @@ const getById = async (req, res) => {
     return res.status(ok).json(product[0]);
 };
 
+const enrolProduct = async (req, res) => {
+  const { name } = req.body;
+  const addProduct = await productService.enrolProduct(name);
+  const product = { id: addProduct, name };
+
+  return res.status(created).json(product);
+};
+
 module.exports = {
   getProduct,
   getById,
+  enrolProduct,
 };
