@@ -15,6 +15,9 @@ router
 router
   .route('/products')
   .get(productController.getProduct)
-  .post(productController.enrolProduct);
+  .post(
+    validate.validateInputName,
+    productController.enrolProduct,
+);
 
 module.exports = router;

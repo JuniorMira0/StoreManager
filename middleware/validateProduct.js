@@ -1,6 +1,8 @@
 const productService = require('../services/productServices');
 
 const notFound = 404;
+const badRequest = 400;
+const webDAV = 422;
 
 const productNotFound = async (req, res, next) => {
     const { id } = req.params;
@@ -13,4 +15,18 @@ const productNotFound = async (req, res, next) => {
   next();
 };
 
-module.exports = { productNotFound };
+const validateInputName = async (req, res, next) => {
+  const { name } = req.body;
+
+  if (!name) {
+    return res.status(badRequest).json({ message: '"name" is required' });
+  }
+  if (name.length < 5) {
+    return res
+      .status(webDAV)
+      .json({ message: '"name" length must be at least 5 characters long' });
+  }
+  next();
+};
+
+module.exports = { productNotFound, validateInputName };
