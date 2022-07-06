@@ -1,6 +1,7 @@
 const express = require('express');
 
 const productController = require('../controllers/productControllers');
+const salesController = require('../controllers/salesController');
 const validate = require('../middleware/validateProduct');
 
 const router = express.Router();
@@ -19,5 +20,9 @@ router
     validate.validateInputName,
     productController.enrolProduct,
 );
+
+router
+  .route('/sales')
+  .post(salesController.createSalesProduct);
 
 module.exports = router;
