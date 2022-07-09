@@ -3,6 +3,7 @@ const express = require('express');
 const productController = require('../controllers/productControllers');
 const salesController = require('../controllers/salesController');
 const validate = require('../middleware/validateProduct');
+const validateSchema = require('../middleware/validationSales');
 
 const router = express.Router();
 
@@ -23,6 +24,9 @@ router
 
 router
   .route('/sales')
-  .post(salesController.createSalesProduct);
+  .post(
+    validateSchema.schema,
+    salesController.createSalesProduct,
+);
 
 module.exports = router;

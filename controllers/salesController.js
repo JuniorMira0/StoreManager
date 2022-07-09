@@ -5,6 +5,10 @@ const created = 201;
 const createSalesProduct = async (req, res) => {
   const sales = req.body;
   const id = await salesService.createSale();
+
+  if (!sales) {
+    return res.status(404).json({ message: 'Product not found' });
+  }
   
   const saleCreated = sales.map(async (sale) => {
     const { productID, quantity } = sale;
