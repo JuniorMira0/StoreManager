@@ -24,3 +24,4 @@ Toda aplicação foi feita através do TDD, contendo testes que cobrem 100% do q
 - Utilizar um software (neste caso, o Insomnia) para realizar as requisições.
 
 ---
+** Projeto desenvolvido para fins de estudos durante minha formação na Trybe.
